@@ -1,0 +1,43 @@
+# --- Global Experiment Settings ---
+num_insertions = 1000000
+tree_variant = "LINEAR"  # Using the insert-optimized variant
+data_type = "RANDOM"     # Test with random data
+page_size_bytes = 4096
+
+# --- Benchmark: In-Memory ---
+[in_memory]
+run = true
+M_capacity = 16
+fill_factor = 0.5
+
+# --- Benchmark: On-Disk (No Buffer) ---
+[on_disk_unbuffered]
+run = true
+M_capacity = 16
+fill_factor = 0.5
+buffer_type = "NONE" # Options: "NONE", "RANDOM", "FIFO", "LRU"
+buffer_size_mb = 0
+
+# --- Benchmark: On-Disk (Dumb Buffer) ---
+[on_disk_buffered_RANDOM]
+run = true
+M_capacity = 16
+fill_factor = 0.5
+buffer_type = "RANDOM"
+buffer_size_mb = 100
+
+# --- Benchmark: On-Disk (Smart FIFO Buffer) ---
+[on_disk_buffered_FIFO]
+run = true
+M_capacity = 16
+fill_factor = 0.5
+buffer_type = "FIFO"
+buffer_size_mb = 100
+
+# --- Benchmark: On-Disk (Smart LRU Buffer) ---
+[on_disk_buffered_LRU]
+run = true
+M_capacity = 16
+fill_factor = 0.5
+buffer_type = "LRU"
+buffer_size_mb = 100
